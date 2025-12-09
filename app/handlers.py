@@ -5,7 +5,8 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 
 
-from app.llm_client import ask_llama, CreateCharacterPrompt
+from app.llm_client import ask_llm
+from app.prompts import*
 
 router = Router()
 
@@ -26,10 +27,9 @@ async def create_character(message: Message, state: FSMContext):
 
 @router.message(CreatecharacterStates.userPrompt)
 async def give_character(message: Message, state: FSMContext):
-    user_prompt = message.text.strip()
-    promptAll="[userprompt] "+user_prompt+CreateCharacterPrompt
+    userPrompt = message.text.strip()
     try:
-        result = ask_llama(promptAll)
+        result = await ask_llm(userPrompt, CREATE_CHARACTER_PROMPT)
     except Exception as e:
         await message.answer(f"Ошибка при обращении к модели: {e}")
         return

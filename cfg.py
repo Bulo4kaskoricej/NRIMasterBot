@@ -1,1 +1,8 @@
-TOKEN = "8430658672:AAHcqDFHJwbmlM5mfWIJPWAw04k9RSLWguo"
+import os
+from dotenv import load_dotenv
+
+# Загружаем .env
+load_dotenv()
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")

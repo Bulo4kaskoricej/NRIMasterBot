@@ -17,3 +17,5 @@ __pycache__/
 
 # Разное
 .DS_Store
+
+.env
